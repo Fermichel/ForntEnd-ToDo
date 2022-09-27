@@ -4,7 +4,7 @@ function validarTexto(texto) {
     if( texto == ''){
         return false;
     }
-    if (campoTexto.test(texto)) {
+    if (!campoTexto.test(texto)) {
         return false;
     }
     return true;
@@ -20,7 +20,7 @@ function validarEmail(email) {
     if( email == ''){
         return false;
     }
-    if (campoEmail.test(email)) {
+    if (!campoEmail.test(email)) {
         return false;
     }
     return true;
@@ -38,7 +38,7 @@ function validarContrasenia(contrasenia) {
     if( password == ''){
         return false;
     }
-    if (password.test(contrasenia)) {
+    if (!password.test(contrasenia)) {
         return false;
     }
     return true;

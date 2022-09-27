@@ -21,14 +21,14 @@ window.addEventListener("load", function () {
       let password2 = validarContrasenia(inputPassword2.value)
 
       if (!validarTexto(nombre) || !validarTexto(apellido)){
-        Swal.fire("Nombre y Apellido incompleto")
-        console.log('nombre o apellido esta en blanco');
+        Swal.fire("Nombre y Apellido incompleto")  
       }
+      console.log('validaqcion texto');
 
       if(!validarEmail(email)){
-          Swal.fire("email ya esta registrado")
-          console.log('mail esta mal ingresado');// aca me sale que esta registrado y no lo tenemos cargado
+          Swal.fire("email ya esta registrado")// aca me sale que esta registrado y no lo tenemos cargado
       }
+      console.log('validacion mail');
 
       if(!compararContrasenias(password, password2) ){
         console.log('contraseñas invalidas');
@@ -40,7 +40,7 @@ window.addEventListener("load", function () {
           color:'white',
         })
       }
-
+      console.log('validar contraseña');
       const datos = {
           firstName: nombre,
           lastName: apellido,
@@ -89,6 +89,7 @@ window.addEventListener("load", function () {
         })
         .catch((res) => {
           console.error("verificar el error: " + res);
+
         });
     }
   });
