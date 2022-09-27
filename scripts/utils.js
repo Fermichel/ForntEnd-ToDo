@@ -1,43 +1,51 @@
-const inputNombre = document.querySelector('#inputNombre');
-const inputApellido = document.querySelector('#inputApellido');
-const inputEmail = document.querySelector('#inputEmail');
-const inputPassword = document.querySelector('#inputPassword');
-const inputPassword2 = document.querySelector('#inputPasswordRepetida');
-const form = document.querySelector('form');
 /* ---------------------------------- texto --------------------------------- */
-function validarTexto() {
-    
-    if(normalizarTexto(inputNombre.value) === " " || normalizarTexto(inputApellido.value)===" "){
-        alert("debes completar los datos");
+function validarTexto(texto) {
+    let campoTexto = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
+    if( texto == ''){
+        return false;
     }
+    if (campoTexto.test(texto)) {
+        return false;
+    }
+    return true;
 }
 
 function normalizarTexto(texto) {
-    let palabra = input.value.trim();
-    return palabra;
+    return texto.trim();
 }
 
 /* ---------------------------------- email --------------------------------- */
 function validarEmail(email) {
-    
+    let campoEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    if( email == ''){
+        return false;
+    }
+    if (campoEmail.test(email)) {
+        return false;
+    }
+    return true;
 }
 
 function normalizarEmail(email) {
-    
+    return email.trim();
 }
 
 
 /* -------------------------------- password -------------------------------- */
 function validarContrasenia(contrasenia) {
-    
+    let password= /^.{4,12}$/;
+
+    if( password == ''){
+        return false;
+    }
+    if (password.test(contrasenia)) {
+        return false;
+    }
+    return true;
 }
 
-function compararContrasenias(contrasenia_1, contrasenia_2) {
-    if(contrasenia_1==contrasenia_2){
-        password= inputPassword.value
-    }else{
-        alert("las contraseñas son incorrectas")
-    }
+function compararContrasenias(contrasenia_1, contrasenia_2){
+    return contrasenia_1 === contrasenia_2 ? true : false;
 }
 
 
