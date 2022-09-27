@@ -48,5 +48,14 @@ function compararContrasenias(contrasenia_1, contrasenia_2){
     return contrasenia_1 === contrasenia_2 ? true : false;
 }
 
+/* --------------------------- funcion de mensaje --------------------------- */
+function swalBox(titulo,icono){
+    Swal.fire({
+        icon: icono,
+        title: titulo,
+        background:'#262B33',
+        color:'white',
+    })
 
+}
 

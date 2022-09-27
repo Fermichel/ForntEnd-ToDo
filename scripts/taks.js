@@ -9,6 +9,8 @@ if (!jwt) {
 const url="https://ctd-fe2-todo-v2.herokuapp.com/v1";
 /* ------ comienzan las funcionalidades una vez que carga el documento ------ */
 window.addEventListener("load", function () {
+  AOS.init();
+
   /* ---------------- variables globales y llamado a funciones ---------------- */
   const btnCerrarSesion = document.querySelector("#closeApp");
   const formCrearTarea = document.querySelector("form.nueva-tarea");
@@ -34,7 +36,6 @@ window.addEventListener("load", function () {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.removeItem("jwt"); // tambien podrias usar localStorage.clear();
-  
         location.replace("index.html");
       }
       console.log(result);
@@ -60,7 +61,7 @@ window.addEventListener("load", function () {
         nombreUsuario.textContent = data.firstName;
       })
       .catch((res) => {
-        console.error("verificar el error: " + res.status(400).json());// modificacion con ale
+        console.error("verificar el error: " + res.status());// modificacion con ale
       });
   }
 
@@ -124,11 +125,12 @@ window.addEventListener("load", function () {
         })
         .catch((error) => console.log(error));
     } else {
-      Swal.fire({
-        title: 'No puedes cargar tareas vacias',
-        background:'#262B33',
-        color:'white',
-      })
+      swalBox('No puedes cargar tareas vacias');
+      // Swal.fire({
+      //   title: 'No puedes cargar tareas vacias',
+      //   background:'#262B33',
+      //   color:'white',
+      // })
     }
 
     formCrearTarea.reset();
@@ -148,7 +150,7 @@ window.addEventListener("load", function () {
         contador++;
         const fecha = parsedDate(element.createdAt);
         const templateTerminada = `
-      <li class="tarea" data-aos="fade-up">
+      <li class="tarea" data-aos="fade-left" data-aos-duration="1200">
         <div class="hecha">
           <i class="fa-regular fa-circle-check"></i>
         </div>
@@ -165,7 +167,7 @@ window.addEventListener("load", function () {
       } else {
         const fecha = parsedDate(element.createdAt);
         const templatePendiente = `
-      <li class="tarea" data-aos="fade-down">
+      <li class="tarea" data-aos="fade-right" data-aos-duration="1200">
         <button class="change" id="${element.id}"><i class="fa-regular fa-circle"></i></button>
         <div class="descripcion">
           <p class="nombre">${element.description}</p>
@@ -262,12 +264,7 @@ window.addEventListener("load", function () {
     }).then((result) => {
 
       if (result.isConfirmed) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Borrado',
-          background:'#262B33',
-          color:'white',
-        })
+        swalBox('Borrado','success');
         fetch(`${url}/tasks/${element.id}`, config)
         .then((res) => res.json())
         .then((data) => {
